@@ -60,7 +60,20 @@ switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
   @Override
   public void onCheckedChanged(CompoundButton v,boolean isChecked){
     editor.putBoolean("k",isChecked);
+    pageLayout.setBackgroundColor(isChecked? Color.GREEN:Color.RED);
   }
 });
-
+boolean isChecked = pref.getBoolean("k",false);
+switch.setChecked(isChecked)
+```
+######13 clear and remove
+clear
+```
+editor.clear();
+editor.apply();
+```
+remove
+```
+editor.remove("k");
+editor.apply();
 ```
