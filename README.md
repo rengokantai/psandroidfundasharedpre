@@ -43,3 +43,24 @@ String a = s.getString("name","NA");
 check generated xml files:  
 Android device monitor: from right 3rd button.->DDMS->file explorer  
 data->data->com.name->shared_prefs -> then right top corner pull a file from the device
+
+######10 App lvl
+open 2nd Activity
+```
+Intent i = new Intent(this, Second.class);
+startActivity(intent);
+```
+set SharedPreferences file name, need to add package name
+```
+SharedPreferences s = getSharedPrederences(getPackageName()+".ke", Context.MODE_PRIVATE);
+```
+######12 Toggle
+```
+switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+  @Override
+  public void onCheckedChanged(CompoundButton v,boolean isChecked){
+    editor.putBoolean("k",isChecked);
+  }
+});
+
+```
