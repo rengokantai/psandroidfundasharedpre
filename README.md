@@ -77,3 +77,48 @@ remove
 editor.remove("k");
 editor.apply();
 ```
+
+
+######16 set GSON proj
+```
+purblic class Foo<T>{
+  private T object;
+  public T getObject(){
+    return object;
+  }
+  pubilc void setObject (T Object){
+    this.object = Object;
+  }
+}
+
+public class Employee{
+  private String name;
+}
+```
+######17 GSON to store a simple
+add dependencies GSON. in build.gradle
+```
+compile 'com.google.code.gson:gson:2.7'
+```
+serialization/save  
+```
+Employee e = new Employee();
+e.setName("ke");
+SharedPreferences a = getPreferences(Context.MODE_PRIVATE);
+SharedPreferences.Editor e = s.edit();
+
+Gson g = new Gson();
+String s = g.toJson(e,Employee.class);        //note this is string type
+Log.i(TAG,s);
+e.putString("name","ke");
+e.apply();
+```
+
+deserialization/load
+```
+SharedPreferences a = getPreferences(Context.MODE_PRIVATE);
+String s = sharedPreferences.getString("name","NA");
+Log.i(TAG,s);
+Gson g = new Gson();
+Employee e = gson.fromJson(s, Employee.class);
+```
