@@ -105,20 +105,39 @@ serialization/save
 Employee e = new Employee();
 e.setName("ke");
 SharedPreferences a = getPreferences(Context.MODE_PRIVATE);
-SharedPreferences.Editor e = s.edit();
+SharedPreferences.Editor ed = s.edit();
 
 Gson g = new Gson();
 String s = g.toJson(e,Employee.class);        //note this is string type
 Log.i(TAG,s);
-e.putString("name","ke");
-e.apply();
+ed.putString("k",s);
+ed.apply();
 ```
 
 deserialization/load
 ```
 SharedPreferences a = getPreferences(Context.MODE_PRIVATE);
-String s = sharedPreferences.getString("name","NA");
+String s = sharedPreferences.getString("k","NA");
 Log.i(TAG,s);
 Gson g = new Gson();
 Employee e = gson.fromJson(s, Employee.class);
+```
+
+######19 Saving and retriving the generic type
+```
+public void saveGeneric(View view){
+  Employee e = getEployee();
+  Foo<Employee> f = new Foo<>();
+  f.setObject(e);
+  
+  SharedPreferences a = getPreferences(Context.MODE_PRIVATE);
+SharedPreferences.Editor ed = s.edit();
+
+Gson g = new Gson();
+Type type = new TypeToken<Foo<Employee>>(){}.getType();          //very important
+String s = g.toJson(f,type);        //note this is string type
+Log.i(TAG,s);
+ed.putString("k",s);
+ed.apply();
+}
 ```
