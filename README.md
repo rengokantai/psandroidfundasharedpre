@@ -65,9 +65,9 @@ filename convention:
 ```
 <package>file_name.xml "com.example.myapp.my_preference_file.xml"
 ```
-######9 SharedPreferences at Act lvl
+### 5 SharedPreferences at Activity Level
 ```
-SharedPreferences s = getPrederences(Context.MODE_PRIVATE);
+SharedPreferences s = getPreferences(Context.MODE_PRIVATE);
 SharedPreferences.Editor e = s.edit();
 e.putString("name",editText1.getText().toString());
 e.putInt("id":123);
