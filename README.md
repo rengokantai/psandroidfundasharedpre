@@ -75,39 +75,44 @@ e.apply();//async //or e.commit();//sync
 ```
 get
 ```
-SharedPreferences s = getPrederences(Context.MODE_PRIVATE);
+SharedPreferences s = getPreferences(Context.MODE_PRIVATE);
 String a = s.getString("name","NA");
 ```
 check generated xml files:  
 Android device monitor: from right 3rd button.->DDMS->file explorer  
-data->data->com.name->shared_prefs -> then right top corner pull a file from the device
+data->data->com.name->shared_prefs -> then right top corner pull a file from the device  
 
-######10 App lvl
+#### 11:42
+Unless you uninstall your app, the file is still in your phone
+
+### 6 SharedPreferences at Application Level
 open 2nd Activity
 ```
-Intent i = new Intent(this, Second.class);
+Intent i = new Intent(this, SecondActivity.class);
 startActivity(intent);
 ```
 set SharedPreferences file name, need to add package name
 ```
 SharedPreferences s = getSharedPrederences(getPackageName()+".ke", Context.MODE_PRIVATE);
 ```
-######12 Toggle
+### 8 TogglecApplication Logic Based on Preference Values
 ```
 switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
   @Override
-  public void onCheckedChanged(CompoundButton v,boolean isChecked){
+  public void onCheckedChanged(CompoundButton buttonView,boolean isChecked){
     editor.putBoolean("k",isChecked);
     pageLayout.setBackgroundColor(isChecked? Color.GREEN:Color.RED);
   }
 });
+```
+```
 boolean isChecked = pref.getBoolean("k",false);
 switch.setChecked(isChecked)
 ```
-######13 clear and remove
+### 9 Perform Clear and Remove Operation
 clear
 ```
-editor.clear();
+editor.clear(); //clears all the key-value pairs in SharedPreferences
 editor.apply();
 ```
 remove
@@ -116,8 +121,8 @@ editor.remove("k");
 editor.apply();
 ```
 
-
-######16 set GSON proj
+## 4. Using GSON to Save and etrive Non-primitive Data Type
+### 2 Initial Project Setup
 ```
 purblic class Foo<T>{
   private T object;
@@ -133,7 +138,7 @@ public class Employee{
   private String name;
 }
 ```
-######17 GSON to store a simple
+### 3 Using GSON to Store a Simple Class Object in SharedPreferences
 add dependencies GSON. in build.gradle
 ```
 compile 'com.google.code.gson:gson:2.7'
@@ -142,8 +147,9 @@ serialization/save
 ```
 Employee e = new Employee();
 e.setName("ke");
-SharedPreferences a = getPreferences(Context.MODE_PRIVATE);
-SharedPreferences.Editor ed = s.edit();
+e.setRoles(Arrays.asList("Developer","Admin");
+SharedPreferences sp = getPreferences(Context.MODE_PRIVATE);
+SharedPreferences.Editor ed = sp.edit();
 
 Gson g = new Gson();
 String s = g.toJson(e,Employee.class);        //note this is string type
@@ -161,7 +167,7 @@ Gson g = new Gson();
 Employee e = gson.fromJson(s, Employee.class);
 ```
 
-######19 Saving and retriving the generic type
+### 5 Saving and Retriving the Generic Type Data from SahredPreferences
 ```
 public void saveGeneric(View view){
   Employee e = getEployee();
