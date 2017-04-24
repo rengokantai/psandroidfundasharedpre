@@ -1,18 +1,56 @@
-#### psandroidfundasharedpre
-######2
-SharedPreferences: store primitive data in kv pair  
-internal storage: store private data on device memory  
-exter: store public data on the shared external storage  
-sqlite databases: store structured data in a private db  
-######6 Accessbility of sharedpreferences
+# psandroidfundasharedpre
+## 2. Introduction
+### 1 Introduction to Android Storage Options
+SharedPreferences
+- store primitive data in key-value pair  
+internal storage  
+- store private data on device memory  
+external storage  
+- store public data on the shared external storage  
+sqlite databases  
+- store structured data in a private db  
+Network Connection  
+- Store data on the web with your own network server  
+
+## 3. Saving and Retriving Data from SharedPreferences
+### 1 Introduction
+Store only promitive ata type  
+- String 
+- int 
+- float 
+- boolean
+### 2 Accessbility of Sharedpreferences
+Now, the SharedPreferences file can have the private access within the application.  
+That is, no other application can have access to your ShaedPreferences file present within your application.  
+
+
+
 only use
 ```
 MODE_PRIVATE
 ```
-######8 How to create
-Activity level: Use if you want a seperate SharedPrederences file for Activity  
+File can be accessible to other apps (deprecated)
 ```
-getPreferences(mode)
+MODE_WORLD_READABLE  //Deprecated in API17
+```
+
+### 3 Initial Project Setup
+Empty Activity
+```
+loadAccountData
+clearAccountData
+removeProfessionKey
+```
+
+### 4 How to Create and Access the SharedPreference
+Activity level
+- Use if you want a seperate SharedPrederences file for Activity  
+- If you want to keep the SharedPreferences file private to your activity, then you can use this activity level SharedPreferences file  
+Application Level  
+- If you want multiple Sharedpreferences files for your app identified by unique name  
+
+```
+getPreferences()
 ```
 filename convention:
 ```
@@ -25,7 +63,7 @@ getSharedPreferences(String name,int mode)
 ```
 filename convention:
 ```
-pkg.file_name.xml
+<package>file_name.xml "com.example.myapp.my_preference_file.xml"
 ```
 ######9 SharedPreferences at Act lvl
 ```
